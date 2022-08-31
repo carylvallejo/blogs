@@ -70,6 +70,10 @@ const express = require('express')
 const db = require('./queries')
 const app = express()
 const cors = require('cors')
+const config = require('./utils/config')
+const logger = require('./utils/logger')
+
+const server = http.createServer(app)
 
 app.use(express.json())
 app.use(cors())
@@ -133,6 +137,12 @@ app.post('/api/blogs', db.createBlogs, (request, response) => {
 //   response.status(204).end()
 // })
 
-const PORT = 3002
-app.listen(PORT)
-console.log(`Server running on port ${PORT}`)
+
+// const PORT = 3002
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`) 
+// })
+
+server.listen(config.PORT, () => {
+  logger.info(`Server running on port ${config.PORT}`)
+})
