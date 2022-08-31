@@ -65,7 +65,6 @@ const PORT = 3002
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`) */
 
-const db = require('./queries')
 const app = require('./app')
 const http = require('http')
 const cors = require('cors')
@@ -81,14 +80,14 @@ app.use(cors())
 // })
 
 //included sa blogs!!!!
-app.get('/api/blogs', db.getBlogs, (request, response) => {
-  Blog
-    .find({})
-    .then(blogs => {
-      response.json(blogs)
-    })
-  //response.json(blogs)
-})
+// app.get('/api/blogs', db.getBlogs, (request, response) => {
+//   Blog
+//     .find({})
+//     .then(blogs => {
+//       response.json(blogs)
+//     })
+//   //response.json(blogs)
+// })
 
 // app.get('/api/notes/:id', db.getNotesById, (request, response) => {
 //   const id = Number(request.params.id)
@@ -102,15 +101,15 @@ app.get('/api/blogs', db.getBlogs, (request, response) => {
 // })
 
 //included sa blogs!!!
-app.post('/api/blogs', db.createBlogs, (request, response) => {
-  const blog = new Blog(request.body)
+// app.post('/api/blogs', db.createBlogs, (request, response) => {
+//   const blog = new Blog(request.body)
 
-  blog
-    .save()
-    .then(result => {
-      response.status(201).json(result)
-    })
-})
+//   blog
+//     .save()
+//     .then(result => {
+//       response.status(201).json(result)
+//     })
+// })
   /*const body = request.body
 
   if (!body.title) {
