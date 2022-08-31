@@ -10,6 +10,17 @@ blogsRouter.get('/', db.getBlogs, (request, response) => {
   //response.json(blogs)
 })
 
+blogsRouter.get('/:id', db.getNotesById, (request, response) => {
+  const id = Number(request.params.id)
+  const blog = blogs.find(blog => blog.id === id)
+
+  if (blog) {
+    response.json(blog)
+  } else {
+    response.status(404).end()
+  }
+})
+
 blogsRouter.post('/', db.createBlogs, (request, response) => {
   const blog = new Blog(request.body)
 
@@ -20,7 +31,13 @@ blogsRouter.post('/', db.createBlogs, (request, response) => {
     })
 })
 
+blogsRouter.delete('/:id', db.deleteNote, (request, response) => {
+  const id = Number(request.params.id)
+  blogs = blogs.filter(blog => blog.id !== id)
+
+  response.status(204).end()
+})
+
 module.exports = blogsRouter
 
 
-//go back to controller/notes
