@@ -65,23 +65,22 @@ const PORT = 3002
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`) */
 
-const http = require('http')
-const express = require('express')
 const db = require('./queries')
-const app = express()
+const app = require('./app')
+const http = require('http')
 const cors = require('cors')
 const config = require('./utils/config')
 const logger = require('./utils/logger')
 
 const server = http.createServer(app)
 
-app.use(express.json())
 app.use(cors())
 
 // app.get('/', (request, response) => {
 //   response.send('<h1>Hello World!</h1>')
 // })
 
+//included sa blogs!!!!
 app.get('/api/blogs', db.getBlogs, (request, response) => {
   Blog
     .find({})
@@ -102,6 +101,7 @@ app.get('/api/blogs', db.getBlogs, (request, response) => {
 //   }
 // })
 
+//included sa blogs!!!
 app.post('/api/blogs', db.createBlogs, (request, response) => {
   const blog = new Blog(request.body)
 
@@ -110,6 +110,7 @@ app.post('/api/blogs', db.createBlogs, (request, response) => {
     .then(result => {
       response.status(201).json(result)
     })
+})
   /*const body = request.body
 
   if (!body.title) {
@@ -127,8 +128,8 @@ app.post('/api/blogs', db.createBlogs, (request, response) => {
 
   blogs = blogs.concat(blog)
 
-  response.json(blog)*/
-})
+  response.json(blog)
+}) */
 
 // app.delete('/api/notes/:id', db.deleteNote, (request, response) => {
 //   const id = Number(request.params.id)
