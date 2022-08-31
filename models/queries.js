@@ -40,16 +40,16 @@ const createBlogs = (request, response) => {
 
 const updateNote = (request, response) => {
   const id = parseInt(request.params.id)
-  const { content } = request.body
+  const { title, author, url, likes } = request.body
 
   pool.query(
-    'UPDATE blogs SET content = $1 WHERE id = $2',
-    [content, id],
+    'UPDATE blogs SET title = $1, author = $2, url = $3, likes = $4 WHERE id = $5',
+    [title, author, url, likes, id],
     (error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).send(`Notes modified with ID: ${id}`)
+      response.status(200).send(`Blogs modified with ID: ${id}`)
     }
   )
 } 
@@ -61,7 +61,7 @@ const deleteNote = (request, response) => {
     if (error) {
       throw error
     }
-    response.status(200).send(`Note deleted with ID: ${id}`)
+    response.status(200).send(`Blog deleted with ID: ${id}`)
   })
 }  
 

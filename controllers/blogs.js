@@ -31,6 +31,20 @@ blogsRouter.post('/', db.createBlogs, (request, response) => {
     })
 })
 
+blogsRouter.put('/:id', db.updateNote, (req, res) => {
+  const body = request.body
+  const id = Number(request.params.id)
+  const blogs = blogs.find(blog => blog.id !== id)
+
+  const blog = {
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes,
+  }
+  response.status(404).end()
+})
+
 blogsRouter.delete('/:id', db.deleteNote, (request, response) => {
   const id = Number(request.params.id)
   blogs = blogs.filter(blog => blog.id !== id)
