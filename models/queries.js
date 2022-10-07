@@ -32,9 +32,9 @@ const createBlogs = (request, response) => {
 
   pool.query('INSERT INTO blogs (title, author, url, likes) VALUES ($1, $2, $3, $4) RETURNING id', [title, author, url, likes], (error, results) => {
     if (error) {
-      throw error;
+      throw error
     }
-    response.status(201).send(`Blog added with ID: ${results.rows[0].id}`);
+    response.status(201).send(`Blog added with ID: ${results.rows[0].id}`)
   })
 }
 
@@ -52,7 +52,7 @@ const updateNote = (request, response) => {
       response.status(200).send(`Blogs modified with ID: ${id}`)
     }
   )
-} 
+}
 
 const deleteNote = (request, response) => {
   const id = parseInt(request.params.id)
@@ -63,7 +63,7 @@ const deleteNote = (request, response) => {
     }
     response.status(200).send(`Blog deleted with ID: ${id}`)
   })
-}  
+}
 
 module.exports = {
   getBlogs,

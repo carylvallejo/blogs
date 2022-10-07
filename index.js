@@ -37,8 +37,8 @@ app.post('/api/notes', db.createNotes, (request, response) => {
   const body = request.body
 
   if (!body.content) {
-    return response.status(400).json({ 
-      error: 'content missing' 
+    return response.status(400).json({
+      error: 'content missing'
     })
   }
 
@@ -110,11 +110,11 @@ app.use(cors())
 //       response.status(201).json(result)
 //     })
 // })
-  /*const body = request.body
+/*const body = request.body
 
   if (!body.title) {
-    return response.status(400).json({ 
-      error: 'title missing' 
+    return response.status(400).json({
+      error: 'title missing'
     })
   }
 
@@ -140,7 +140,7 @@ app.use(cors())
 
 // const PORT = 3002
 // app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`) 
+//   console.log(`Server running on port ${PORT}`)
 // })
 
 server.listen(config.PORT, () => {

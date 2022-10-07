@@ -2,7 +2,7 @@ const blogsRouter = require('express').Router()
 const db = require('../models/queries')
 
 blogsRouter.get('/', db.getBlogs, (request, response) => {
-  Blog
+  db
     .find({})
     .then(blogs => {
       response.json(blogs)
@@ -12,7 +12,7 @@ blogsRouter.get('/', db.getBlogs, (request, response) => {
 
 blogsRouter.get('/:id', db.getNotesById, (request, response) => {
   const id = Number(request.params.id)
-  const blog = blogs.find(blog => blog.id === id)
+  const blog = db.find(blog => blog.id === id)
 
   if (blog) {
     response.json(blog)
@@ -22,7 +22,7 @@ blogsRouter.get('/:id', db.getNotesById, (request, response) => {
 })
 
 blogsRouter.post('/', db.createBlogs, (request, response) => {
-  const blog = new Blog(request.body)
+  const blog = new db(request.body)
 
   blog
     .save()
@@ -31,7 +31,7 @@ blogsRouter.post('/', db.createBlogs, (request, response) => {
     })
 })
 
-blogsRouter.put('/:id', db.updateNote, (req, res) => {
+blogsRouter.put('/:id', db.updateNote, (request, response) => {
   const body = request.body
   const id = Number(request.params.id)
   const blogs = blogs.find(blog => blog.id !== id)
@@ -47,7 +47,7 @@ blogsRouter.put('/:id', db.updateNote, (req, res) => {
 
 blogsRouter.delete('/:id', db.deleteNote, (request, response) => {
   const id = Number(request.params.id)
-  blogs = blogs.filter(blog => blog.id !== id)
+  const blogs = blogs.filter(blog => blog.id !== id)
 
   response.status(204).end()
 })
